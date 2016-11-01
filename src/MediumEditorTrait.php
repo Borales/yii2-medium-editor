@@ -21,7 +21,7 @@ trait MediumEditorTrait
      * @param array $options
      * @return string
      */
-    public function mediumEditor($options)
+    public function mediumEditor($options = array())
     {
         return $this->widget(Widget::className(), $options);
     }
