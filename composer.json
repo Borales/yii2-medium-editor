@@ -1,0 +1,30 @@
+{
+    "name": "borales/yii2-medium-editor",
+    "description": "Medium editor widget for Yii2",
+    "type": "yii2-extension",
+    "homepage": "https://github.com/Borales/yii2-medium-editor",
+    "support": {
+        "issues": "https://github.com/Borales/yii2-medium-editor/issues?state=open",
+        "source": "https://github.com/Borales/yii2-medium-editor"
+    },
+    "keywords": [
+        "yii2",
+        "medium editor",
+        "wysiwyg"
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "borales\\medium\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Borales (Alexandr Bordun)",
+            "email": "bordun.alexandr@gmail.com"
+        }
+    ]
+}
