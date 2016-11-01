@@ -32,30 +32,16 @@ class Widget extends InputWidget
     public $settings = [];
 
     /**
-     * @var array Editable tag options
-     */
-    public $tagOptions = [
-        'class' => 'editable'
-    ];
-
-    /**
      * @return string
      */
     public function run()
     {
-        $this->tagOptions['data-input'] = '#' . $this->options['id'];
-
-        if($this->hasModel()) {
-            $value = Html::getAttributeValue($this->model, $this->attribute);
-            $inputTag = Html::activeHiddenInput($this->model, $this->attribute, $this->options);
-        } else {
-            $value = $this->value;
-            $inputTag = Html::hiddenInput($this->name, $value, $this->options);
-        }
-
         $this->registerAsset();
 
-        return Html::tag('div', $value, $this->tagOptions) . $inputTag;
+        if($this->hasModel()) {
+            return Html::activeTextarea($this->model, $this->attribute, $this->options);
+        }
+        return Html::textarea($this->name, $this->value, $this->options);
     }
 
     protected function registerAsset()
@@ -66,11 +52,6 @@ class Widget extends InputWidget
             $asset->theme = $this->theme;
         }
 
-        $js = <<<JS
-var editor = new MediumEditor('.editable[data-input="#{$this->options['id']}"]', {$settingsStr});
-$('.editable[data-input="#{$this->options['id']}"]').on("input", function() {var _this = $(this); $(_this.data("input")).val(_this.html());});
-JS;
-
-        $this->view->registerJs($js);
+        $this->view->registerJs("var editor = new MediumEditor('#{$this->options['id']}', {$settingsStr});");
     }
 }
