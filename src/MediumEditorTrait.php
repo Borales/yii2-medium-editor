@@ -7,6 +7,8 @@
 
 namespace borales\medium;
 
+use yii\widgets\ActiveField;
+
 /**
  * Trait for custom ActiveField class
  *
@@ -19,7 +21,7 @@ trait MediumEditorTrait
     /**
      * Render Medium Editor widget
      * @param array $options
-     * @return string
+     * @return ActiveField
      */
     public function mediumEditor($options = array())
     {
