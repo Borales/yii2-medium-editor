@@ -1,13 +1,21 @@
 <?php
+/**
+ * @copyright Copyright (c) 2016 Alexandr Bordun
+ * @link https://yiiframework.com.ua/
+ * @license https://opensource.org/licenses/MIT MIT License
+ */
 
 namespace borales\medium;
 
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\AssetBundle;
 use yii\widgets\InputWidget;
 
 /**
+ * Renders Medium Editor widget
+ *
+ * @author Alexandr Bordun <bordun.alexandr@gmail.com>
+ * @link https://yiiframework.com.ua/
  * @package borales\medium
  */
 class Widget extends InputWidget
