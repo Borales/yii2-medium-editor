@@ -109,7 +109,9 @@ echo \borales\medium\Widget::widget([
     'attribute' => 'text',
     'theme' => 'tim', // Set a theme for this specific widget
     'settings' => [
-        'buttons' => ['bold', 'italic', 'quote'],
+        'toolbar' => [
+            'buttons' => ['bold', 'italic', 'quote'],
+        ]
     ],
 ]);
 ```
@@ -128,7 +130,9 @@ echo $form->field($model, 'text')->widget(\borales\medium\Widget::className());
 echo $form->field($model, 'text')->widget(\borales\medium\Widget::className(), [
     'theme' => 'mani',
     'settings' => [
-        'buttons' => ['bold', 'italic', 'quote'],
+        'toolbar' => [
+            'buttons' => ['bold', 'italic', 'quote'],
+        ]
     ],
 ]);
 ```
