@@ -19,14 +19,10 @@ trait MediumEditorTrait
     /**
      * Render Medium Editor widget
      * @param array $options
-     * @param array $editorSettings
      * @return string
      */
-    public function mediumEditor($options, $editorSettings)
+    public function mediumEditor($options)
     {
-        return $this->widget(Widget::className(), [
-            'options' => $options,
-            'settings' => $editorSettings
-        ]);
+        return $this->widget(Widget::className(), $options);
     }
 }

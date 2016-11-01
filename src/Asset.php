@@ -87,7 +87,7 @@ class Asset extends AssetBundle
     protected function getAssetUrl($file)
     {
         return sprintf('https://cdn.jsdelivr.net/medium-editor/%s/%s',
-            ($this->useLatest ? 'latest' : $this->cdnVersion ),
+            ($this->useLatest ? 'latest' : $this->cdnVersion),
             $file
         );
     }
