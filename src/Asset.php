@@ -24,6 +24,11 @@ class Asset extends AssetBundle
     public $useLatest = true;
 
     /**
+     * @var bool Whether to include theme CSS file to css list
+     */
+    public $includeTheme = true;
+
+    /**
      * @var string if $useLatest is set to "false" - use this version
      */
     public $cdnVersion = '5.22.1';
@@ -63,10 +68,12 @@ class Asset extends AssetBundle
             $this->theme = 'default';
         }
 
-        // Adding selected Medium theme
-        $this->css[] = "css/themes/{$this->theme}.min.css";
+        if($this->includeTheme) {
+            // Adding selected Medium theme
+            $this->css[] = "css/themes/{$this->theme}.min.css";
+        }
 
-        if(!$this->sourcePath) {
+        if(!$this->sourcePath && !$this->basePath) {
             foreach ($this->js as $jsIndex=>$jsFile) {
                 $this->js[$jsIndex] = $this->getAssetUrl($jsFile);
             }
