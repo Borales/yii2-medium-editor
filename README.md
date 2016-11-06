@@ -6,9 +6,11 @@
 
 Renders Medium.com WYSIWYG editor ([yabwe/medium-editor](https://github.com/yabwe/medium-editor)) widget.
 
+- [Changelog](CHANGELOG.md)
 - [Installation](#installation)
 - [Assets](#assets)
 - [Usage](#usage)
+- [External plugins](#external-plugins)
 - [Licence](#license)
 
 ## Installation
@@ -156,6 +158,23 @@ And after that - call `mediumEditor()` method to render Medium Editor widget lik
 ```php
 echo $form->field($model, 'text')->mediumEditor()
 ```
+
+## External plugins
+
+If you want to use external plugin, which does not refer to the toolbar button (such as
+[medium-editor-insert-plugin](https://github.com/orthes/medium-editor-insert-plugin)), 
+you need to use `plugins` property of the Widget and pass your code like this:
+
+```php
+echo $form->field($model, 'text')->widget(\borales\medium\Widget::className(), [
+    'plugins' => [
+        'mediumInsert' => '$(selector).mediumInsert({editor: editor});',
+    ],
+]);
+```
+
+> `selector` and `editor` variables will be passed to the callback inside of the Widget's
+render method.
 
 ## License
 

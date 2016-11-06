@@ -74,13 +74,8 @@ class Asset extends AssetBundle
         }
 
         if(!$this->sourcePath && !$this->basePath) {
-            foreach ($this->js as $jsIndex=>$jsFile) {
-                $this->js[$jsIndex] = $this->getAssetUrl($jsFile);
-            }
-
-            foreach ($this->css as $cssIndex=>$cssFile) {
-                $this->css[$cssIndex] = $this->getAssetUrl($cssFile);
-            }
+            $this->js = array_map([$this, 'getAssetUrl'], $this->js);
+            $this->css = array_map([$this, 'getAssetUrl'], $this->css);
         }
 
         parent::registerAssetFiles($view);

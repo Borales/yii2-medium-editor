@@ -8,6 +8,7 @@
 namespace borales\medium;
 
 use yii\helpers\Html;
+use yii\helpers\Inflector;
 use yii\helpers\Json;
 use yii\widgets\InputWidget;
 
@@ -32,6 +33,11 @@ class Widget extends InputWidget
     public $settings = [];
 
     /**
+     * @var string[] List of external plugins
+     */
+    public $plugins = [];
+
+    /**
      * @return string
      */
     public function run()
@@ -52,6 +58,34 @@ class Widget extends InputWidget
             $asset->theme = $this->theme;
         }
 
-        $this->view->registerJs("var editor = new MediumEditor('#{$this->options['id']}', {$settingsStr});");
+        $this->view->registerJs("var {$this->getEditorVarName()} = new MediumEditor('{$this->getEditorSelector()}', {$settingsStr});");
+        array_map([$this, 'registerPlugin'], $this->plugins);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEditorSelector()
+    {
+        return "#{$this->options['id']}";
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEditorVarName()
+    {
+        return Inflector::variablize('editor_' . $this->options['id']);
+    }
+
+    /**
+     * @param string $pluginInitString
+     */
+    protected function registerPlugin($pluginInitString)
+    {
+        $varName = $this->getEditorVarName();
+        $selector = $this->getEditorSelector();
+
+        $this->view->registerJs("(function(selector, editor) { $pluginInitString })('{$selector}', {$varName});");
     }
 }
